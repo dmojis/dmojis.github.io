@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Emojis</title>
+    <style>
+      img.emoji {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.25rem;
+        background: #232528;
+        border-radius: 0.25rem;
+        cursor: pointer;
+      }
+
+      body {
+        background: #2f3136;
+        color: #dbdee1;
+        font-family: sans-serif;
+      }
+
+      img.emoji:hover,
+      img.emoji:focus {
+        background: #4f545c;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    Loading...
+    <script>
+      (async () => {
+        document.body.innerHTML = Object.entries(
+          await (await fetch("/emojis.json")).json()
+        )
+          .map(
+            ([name, url]) =>
+              `<img src="${url}" class="emoji" alt="${name}" role="button" tabindex="0" />`
+          )
+          .join("\n");
+        document.body.addEventListener("click", (event) => {
+          if (event.target.matches("img.emoji")) {
+            const img = event.target;
+            navigator.clipboard.writeText(
+              "||" +
+                "\u200b||||".repeat(199) +
+                "||||" +
+                location.origin +
+                "/" +
+                img.alt
+            );
+          }
+        });
+      })().catch(e=>{
+        console.error(e)
+        document.body.textContent="Failed to load emojis."
+      });
+    </script>
+  </body>
+</html>
