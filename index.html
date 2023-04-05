@@ -67,8 +67,9 @@
           )
           .join("\n");
         document.body.addEventListener("click", (event) => {
-          if (event.target.matches("button.emoji")) {
-            const img = event.target.querySelector("img");
+          const button = event.target.closest("button.emoji")
+          if (button) {
+            const img = button.querySelector("img");
             navigator.clipboard.writeText(
               "||" +
                 "\u200b||||".repeat(199) +
