@@ -1,35 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
     <title>dmojis</title>
+    <meta name="description" content="send non-blurry custom emojis on discord without nitro">
+    <meta itemprop="name" content="dmojis">
+    <meta itemprop="description" content="send non-blurry custom emojis on discord without nitro">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="dmojis">
+    <meta name="twitter:description" content="send non-blurry custom emojis on discord without nitro">
+    <meta name="og:title" content="dmojis">
+    <meta name="og:description" content="send non-blurry custom emojis on discord without nitro">
+    <meta name="og:url" content="https://dmojis.github.io/">
+    <meta name="og:locale" content="en">
+    <meta name="og:type" content="website">
     <style>
+      button.emoji {
+        padding: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+      }
       img.emoji {
         width: 2rem;
         height: 2rem;
         padding: 0.25rem;
         background: #232528;
         border-radius: 0.25rem;
-        cursor: pointer;
       }
-
       body {
         background: #2f3136;
         color: #dbdee1;
         font-family: Roboto, system-ui, sans-serif;
       }
-
-      img.emoji:hover,
-      img.emoji:focus {
+      button.emoji:hover img,
+      button.emoji:focus img {
         background: #4f545c;
         outline: none;
       }
-      
       a {
         color: #00a8fc;
         text-decoration: none;
       }
-      
       a:hover {
         text-decoration: underline;
       }
@@ -37,7 +50,9 @@
   </head>
   <body>
     Loading...
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js" integrity="sha256-xoB1Zy2Xbkd3OQVguqESGUhVvUQEsTZH2khVquH5Ngw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"
+      integrity="sha256-xoB1Zy2Xbkd3OQVguqESGUhVvUQEsTZH2khVquH5Ngw="
+      crossorigin="anonymous"></script>
     <script>
       (async () => {
         const README = marked.parse(await(await fetch("/README.md")).text())
@@ -46,12 +61,12 @@
         )
           .map(
             ([name, url]) =>
-              `<img src="${url}" class="emoji" alt="${name}" role="button" tabindex="0" />`
+              `<button class="emoji" title="${name}" tabindex="0"><img src="${url}" alt="${name}" /></button>`
           )
           .join("\n");
         document.body.addEventListener("click", (event) => {
-          if (event.target.matches("img.emoji")) {
-            const img = event.target;
+          if (event.target.matches("button.emoji")) {
+            const img = event.target.querySelector("img");
             navigator.clipboard.writeText(
               "||" +
                 "\u200b||||".repeat(199) +
