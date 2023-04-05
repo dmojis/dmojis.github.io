@@ -1,6 +1,12 @@
 # dmojis
 send non-blurry custom emojis on discord without nitro  
-just go to https://dmojis.github.io/ and click one to copy it
+just click an emoji to copy it
 
-## Adding more emojis
-add them in the emojis folder and send a PR, i'll merge it and github actions will do the rest
+<details><summary>want to add more emojis?</summary>
+  <ul>
+    <li><a href="https://github.com/dmojis/dmojis.github.io/fork">fork the github repo</a></li>
+    <li>upload the new emojis to the emojis folder</li>
+    <li>send a PR</li>
+    <li>i'll merge them and CI will do the rest</li>
+  </ul>
+</details>
