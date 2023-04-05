@@ -1,6 +1,6 @@
 # dmojis
 send non-blurry custom emojis on discord without nitro  
-just click an emoji to copy it
+just click an emoji to copy it, then paste it at the end of your discord message
 
 <details><summary>want to add more emojis?</summary>
   <ul>
