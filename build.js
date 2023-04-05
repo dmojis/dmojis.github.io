@@ -31,8 +31,9 @@ async function main() {
     emojis[fileNameWithoutExt] = `/emojis/${file}`;
   }
 
-  // copy index.html to output folder
+  // copy index.html and README.md to output folder
   await fs.copyFile('./index.html', path.join(outputFolder, 'index.html'));
+  await fs.copyFile('./README.md', path.join(outputFolder, 'README.md'));
 
   // create emojis.json file
   await fs.writeFile(path.join(outputFolder, 'emojis.json'), JSON.stringify(emojis));
