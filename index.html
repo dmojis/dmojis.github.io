@@ -63,7 +63,7 @@
         )
           .map(
             ([name, url]) =>
-              `<button class="emoji" title="${name}" tabindex="0"><img src="${url}" alt="${name}" /></button>`
+              `<button class="emoji" title="${name}" tabindex="0"><img src="${url}" alt="${name}" loading="lazy" /></button>`
           )
           .join("\n");
         document.body.addEventListener("click", (event) => {
